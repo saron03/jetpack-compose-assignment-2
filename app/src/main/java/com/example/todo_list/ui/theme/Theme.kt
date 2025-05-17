@@ -5,21 +5,21 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-
 private val LightColorScheme = lightColorScheme(
     primary = Primary,
     onPrimary = OnPrimary,
-    primaryContainer = PrimaryContainer,
     secondary = Secondary,
     onSecondary = OnSecondary,
-    background = Background,
+    background = PageBackground,
     onBackground = Color.Black,
-    surface = Color(0xFF2C2C2C),
+    surface = CardBackground,
     onSurface = Color.Black,
+    surfaceVariant = TitleBackground,
+    onSurfaceVariant = Color.White,
+    surfaceTint = CardBackground,
     error = Error,
     onError = OnError,
 )
-
 
 @Composable
 fun ToDoListTheme(

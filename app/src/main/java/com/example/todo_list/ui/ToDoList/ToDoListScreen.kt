@@ -11,17 +11,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.todo_list.data.model.ToDo
+import com.example.todo_list.ui.theme.CardBackground
 
-private val PageBackground = Color.White
-private val CardBackground = Color(0xFFB0B0B0)
-private val TitleBackground = Color(0xFF4A4A4A)
 private val TitleMargin = 12.dp
 
 @Composable
@@ -35,14 +32,13 @@ fun ToDoListScreen(
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = PageBackground
+        color = MaterialTheme.colorScheme.background
     ) {
         Column {
-            // Title with margin below
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(TitleBackground)
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
                     .padding(vertical = 20.dp)
                     .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center
@@ -51,7 +47,7 @@ fun ToDoListScreen(
                     text = "All Tasks",
                     style = MaterialTheme.typography.headlineMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 )
             }
@@ -63,7 +59,7 @@ fun ToDoListScreen(
                     isLoading && errorMessage == null -> {
                         CircularProgressIndicator(
                             modifier = Modifier.align(Alignment.Center),
-                            color = TitleBackground
+                            color = MaterialTheme.colorScheme.surfaceVariant
                         )
                     }
                     errorMessage != null -> {
@@ -96,7 +92,7 @@ fun ToDoListScreen(
                             ) {
                                 Text(
                                     text = "No todos found.",
-                                    style = MaterialTheme.typography.bodyLarge.copy(color = Color.Black)
+                                    style = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onBackground)
                                 )
                                 Spacer(modifier = Modifier.height(16.dp))
                                 Button(onClick = { viewModel.loadTodos() }) {
@@ -144,20 +140,26 @@ fun ToDoItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = CardBackground),
+        colors = CardDefaults.cardColors(
+            containerColor = CardBackground,
+            contentColor = MaterialTheme.colorScheme.onSurface,
+            disabledContainerColor = CardBackground,
+            disabledContentColor = MaterialTheme.colorScheme.onSurface
+        ),
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(20.dp)
+                .background(CardBackground),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = todo.title,
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontWeight = FontWeight.SemiBold
                 ),
                 maxLines = 1,

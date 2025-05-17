@@ -7,7 +7,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,7 +31,7 @@ fun DetailScreen(
                 title = {
                     Text(
                         text = "Todo Details",
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold)
                     )
                 },
@@ -41,12 +40,12 @@ fun DetailScreen(
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Back",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = Color(0xFF333333)
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
                 )
             )
         }
@@ -62,8 +61,8 @@ fun DetailScreen(
                 Text(
                     text = "Title: ${it.title}",
                     style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,   // changed from SemiBold to Bold
-                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize * 1.1f
                     )
                 )
@@ -71,7 +70,7 @@ fun DetailScreen(
                     text = "User ID: ${it.userId}",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize * 1.1f
                     )
                 )
@@ -79,7 +78,7 @@ fun DetailScreen(
                     text = "Completed: ${if (it.completed) "Yes" else "No"}",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize * 1.1f
                     )
                 )
@@ -90,7 +89,7 @@ fun DetailScreen(
                 .padding(innerPadding),
             contentAlignment = Alignment.Center
         ) {
-            CircularProgressIndicator(color = Color(0xFF333333))
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.surfaceVariant)
         }
     }
 }

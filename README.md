@@ -22,7 +22,7 @@ This Android app demonstrates a Todo List built using Jetpack Compose, Retrofit,
 
 The app follows the **MVVM (Model-View-ViewModel)** architecture pattern:
 
-- **Model**: Kotlin data classes, Room entities, Retrofit API service
+- **Model**: Kotlin data classes,Repository, Room entities, Retrofit API service
 - **ViewModel**: Handles UI state and business logic, exposes state to the UI
 - **View**: Jetpack Compose UI components observing ViewModel state
 
